@@ -1,0 +1,463 @@
+/* what do the the next 3 lines mean? */
+:root {
+  --primary-color: #e50914;
+  --dark-color: #141414;
+  --light-color: #f4f4f4;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; /* what does this mean? */
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+
+  /* font smothing anti-aliased using the vendor prefix of WebKit's*/
+  -webkit-font-smoothing: antialiased; /* what does this even mean? */
+
+  background: #000;
+  color: #999;
+}
+
+ul {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: #fff;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+p {
+  /* since we turned off the *margin* and *padding* for everything, however, in paragraphs we do want a default *margin* at the top and bottom */
+  /* watch em & rem units Traversy Media video */
+  /* 1rem is equivalent to whatever the number of pixels of the font size of the route HTML element (which by default is 16, so 1rem is gonna be 16px, and .5rem is gonna be 8px etc. */
+  /* but the question is: Why do we use `rem` in cases of not determining the font size of another element? In other words, what i the relationship between the margin value and the font-size of the page's.*/
+  margin: 0.5rem 0;
+}
+
+img {
+  /* any images we have are gonna take up a 100% of the width of its container */
+  width: 100%;
+}
+
+.showcase {
+  width: 100%;
+  height: 100vh;
+  position: relative; /* becasue we are gonna ad some elements within it which their *position* value will be *absolute* */
+  background: url("../img/background.jpg") no-repeat center center/cover; /* i don't fully get this last "center/cover" thing yet */
+}
+
+.showcase::after {
+  /*search more on the ::after property itself */
+  /*we want to position this inside our *.showcase* and so long as it took relative position, this one here will take an absolute one */
+  content: ""; /* we don't want to push any content so we just leave that quotes empty ... I want to search on that too*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: rgba(
+    0,
+    0,
+    0,
+    0.6
+  ); /*a stands for the "alpha" value (which is a thing that I need to search on)*/
+
+  /*overlaying things out! The first part is gonna be for the left and the top, and these values determine how thick the shadow is! To apply this whole thing to the other side, we add the values in a negative state using the minus sign "-" */
+  /*search more on this tho!*/
+  -webkit-box-shadow: inset 120px 100px 250px #000,
+    inset -120px -100px 250px #000;
+  box-shadow: inset 70px 70px 250px #000, inset -70px -70px 250px #000;
+}
+
+.showcase-top {
+  position: relative; /* becasue I am gonna position the logo `absolute` within it */
+  height: 90px;
+  z-index: 2;
+  /* z-index ... the heigher it is, the more close it the element becomes to us (above the other page's content/elements) */
+}
+
+.showcase-top img {
+  width: 170px;
+  position: absolute; /* which means we are just positioning it inside of its closest parent element that has `positio: relative;`, which is .showcse-top */
+  top: 50%; /* from the top we want to go down 50% */
+  left: 50%;
+  /*so far the image is 50% down and 50% over, however this also at the length of the actual image is included in that positioning, so it looks further over to the right than it should be, so we are gonna add a *transform: translate();* property here to kind of put it into place */
+  /* this will kind of make up for the actual height and width of the image, it's gonna go up and left*/
+  /*now it's pretty much smacked-dab in the middle, which si where we want it*/
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(
+    -50%,
+    -50%
+  ); /* to remove the the original width and height of the image which have been added to the value we put newly so that we will have put it as exactly as it is but not plus other numbers under the hood! Was that understanding right? I will search on it. */
+}
+
+/*right now we are gonna go for the button in the `.showcse-top` section to position it, and after that we will do the button utility class (I don't know what "utility class" is, but it doesn't even matter for now, I will research on that later) */
+/* appearently that "utility class" thing turned out being such a standard area we write the code we are gonna use over and over through the project in different places. So we say if we want to have a large button anywhere, we just add this `btn-lg` class name to element in out HTML file. And then we have the button has been added. */
+.showcase-top a {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(
+    -50%,
+    -50%
+  ); /* to remove the added original value so we position it as supposed (as we just wrote: `top: 50%; right: 0;`) to move it inside the web-page a little bit to not be at the very right side of the edge. I will try to apply this rule in other projects and see if it's gonna work out!*/
+}
+
+.showcase-content {
+  position: relative;
+  z-index: 2;
+  margin: auto; /*to put it in the middle*/ /*search on that later again*/
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column; /*instead of row (which is the default) to just display it virtically but not horizontally*/
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 6rem;
+}
+
+.showcase-content h1 {
+  font-weight: 700;
+  font-size: 5rem;
+  line-height: 1.1;
+  margin: 0 0 2rem;
+}
+
+.showcase-content p {
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 400;
+  font-size: 1.8rem;
+  line-height: 1.25;
+  margin: 0 0 2rem;
+}
+
+/* Tabs */
+.tabs {
+  background: var(--dark-color);
+  padding-top: 1rem;
+  border-bottom: 3px solid #3d3d3d; /* this is the border for the whole entire section (the little tiny gray border) */
+}
+
+/* 
+  to align the icons well we need to use the Grid system.
+  the way that the grid works is that you have a parent container that you display as grid
+  and then you have the grid items (the different div elements) directly inside.
+  we will not go for the tabs container because if we do that we just have the container div as the only direct element inside,
+  but instead we are going to display the container as grid because it has the 3 div elements inside which we want to align.
+*/
+
+.tabs .container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5rem;
+  /* we use these following three properties quite often in Grid and Flexbox*/
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.tabs p {
+  font-size: 1.2rem;
+  padding-top: 0.5rem;
+}
+
+.tabs .container > div {
+  padding: 1.5rem 0;
+}
+
+.tabs .container > div:hover {
+  color: #fff;
+  cursor: pointer; /* to change the mouse from the *cursor* shape to the *hand* one */
+}
+
+.tab-border {
+  border-bottom: var(--primary-color) 5px solid;
+}
+
+/* Tab Content */
+.tab-content {
+  padding: 3rem 0;
+  margin-bottom: 8rem;
+  background: #000;
+  color: #fff;
+}
+
+/* Hide content initially */
+#tab-1-content,
+#tab-2-content,
+#tab-3-content {
+  display: none;
+}
+
+/* to get that show class to the correct section*/
+.show {
+  display: block !important; /* find out more about this `!important` thing */
+}
+
+#tab-1-content .tab-1-content-inner {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+#tab-1-content .tab-1-content-inner .btn-lg {
+  margin-top: 0.8rem;
+}
+
+#tab-1-content p {
+  font-size: 2rem;
+}
+
+#tab-2-content .tab-2-content-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* because we want to make the text longer than the button */
+  grid-gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+#tab-2-content .tab-2-content-bottom {
+  margin-top: 4.5rem;
+  display: grid;
+  grid-template-columns: repeat(
+    3,
+    1fr
+  ); /* because we want to make the text longer than the button */
+  grid-gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#tab-3-content p {
+  float: left;
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+/* Table */
+.table {
+  width: 100%;
+  margin-top: 2.5rem;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+#tab-3-content table thead tr th {
+  text-transform: uppercase;
+  padding: 0.6rem;
+}
+
+.table tbody tr td {
+  color: #999;
+  padding: 0.8rem 1.2rem;
+  text-align: center;
+}
+
+.table tbody tr td:first-child {
+  text-align: left;
+}
+
+.table tbody tr:nth-child(even) {
+  background: #222;
+}
+
+/* Footer */
+.footer {
+  max-width: 75%;
+  margin: 1rem auto;
+  overflow: auto;
+}
+
+.footer,
+.footer a {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.footer p {
+  margin-bottom: 1.5rem;
+}
+
+.footer .footer-cols {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2rem;
+}
+
+.footer li {
+  line-height: 1.9;
+}
+
+/* ======= we keep the utility stuff down at the bottom ===== */
+
+/* Container */
+.container {
+  max-width: 70%; /* of the screen*/
+  margin: auto; /* to put everything in the middle*/
+  overflow: hidden;
+  padding: 0 2rem;
+}
+
+/* Text Styls */
+.text-xl {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.text-lg {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.text-md {
+  font-size: 1.2rem;
+  font-weight: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-dark {
+  color: #999;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  background: var(--primary-color);
+  color: #fff;
+  padding: 0.4rem 1.3rem;
+  font-size: 1rem;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  outline: none; /* search more about that */
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
+  border-radius: 2px;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn-rounded {
+  border-radius: 5px;
+}
+
+.btn-xl {
+  margin-top: 1rem;
+  font-size: 2rem;
+  padding: 2rem 3rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.btn-lg {
+  font-size: 0.9rem;
+  padding: 1rem 1.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+/* we are gonna handle the large button and the text in the showcase section first, and then we are gonna do the overlay latter (i need to search more on this overlay thing)*/
+
+.btn-icon {
+  margin-left: 1rem;
+}
+
+/* Media Queries */
+@media (max-width: 960px) {
+  .showcase {
+    height: 70vh;
+  }
+
+  .hide-sm {
+    display: none;
+  }
+
+  .showcase-top img {
+    top: 30%;
+    left: 5%;
+    transform: translate(0);
+  }
+
+  .showcase-content h1 {
+    font-size: 3.7rem;
+    line-height: 1;
+  }
+
+  .showcase-content p {
+    font-size: 1.5rem;
+  }
+
+  .footer .footer-cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .btn-xl {
+    font-size: 2rem;
+    padding: 1.2rem 1.6rem;
+    text-transform: uppercase;
+  }
+
+  .text-xl {
+    font-size: 1.5rem;
+  }
+
+  .text-lg {
+    font-size: 1.3rem;
+  }
+
+  .text-md {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .showcase::after {
+    box-shadow: inset 80px 80px 250px #000000, inset -80px -80px 250px #000000;
+  }
+
+  /* we want everything at this point to be stacked (one row after the other) */
+  #tab-1-content .tab-1-content-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  #tab-2-content .tab-2-content-top {
+    display: block;
+    text-align: center;
+  }
+
+  #tab-2-content .tab-2-content-bottom {
+    grid-template-columns: 1fr;
+  }
+}
