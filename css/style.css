@@ -465,48 +465,51 @@ img {
 @media (max-width: 414px) {
   .showcase-content h1 {
     font-size: 2.7rem;
-}
-.showcase-top a {
-  position: absolute;
-  top: 55%;
-  right: 0.1%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(
--50%,
--50%
-);
-}
+  }
+  .showcase-top a {
+    position: absolute;
+    top: 55%;
+    right: 0.1%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
 
-.showcase-content p {
-  font-size: 1.2rem;
-}
-.btn-xl {
-  font-size: 1.5rem;
-  padding: 1.2rem 1.6rem;
-  margin-top: 2rem;
+  .showcase-content p {
+    font-size: 1.2rem;
+  }
+  .btn-xl {
+    font-size: 1.5rem;
+    padding: 1.2rem 1.6rem;
+    margin-top: 2rem;
+    margin-left: 5px;
+    text-transform: uppercase;
+  }
 
-  text-transform: uppercase;
-}
+  .tabs {
+    padding-top: 0.5rem;
+  }
+  .tabs .container > div {
+    padding: 1.2rem 0;
+    font-size: 0.8rem;
+  }
+  #tab-1-content p {
+    font-size: 1.5rem;
+  }
 
-.fa-3x {
-  font-size: 2.5em;
-}
-
-#tab-1-content p {
-  font-size: 1.2rem;
-}
-
-.showcase-content p {
-  line-height: 1;
-}
-
-.tabs .container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 4rem;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
+  .showcase-content p {
+    font-size: 1rem;
+    line-height: 1;
+  }
+  .btn-lg {
+    font-size: 0.9rem;
+    padding: 1rem 1rem;
+  }
+  .tabs .container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 4rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
 }
