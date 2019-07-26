@@ -462,7 +462,7 @@ img {
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 375px) {
   .showcase-content h1 {
     font-size: 2.7rem;
   }
