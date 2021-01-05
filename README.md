@@ -3,5 +3,5 @@ I coded the landind page's UI of Netflix following TraversyMedia and then added 
 .
 📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌📌
 .
-🔗 🔗 🔗>>>  netflix-lp.netlify.app 
+🔗 🔗 🔗  netflix-lp.netlify.app 
 
